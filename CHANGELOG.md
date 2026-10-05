@@ -5,7 +5,217 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## Unreleased
+
+### Added
+
+- Optional callback for disconnection events.
+- `BUTTON_STATUS_LONG_HOLD` constant for the `LongHold` LEAP button event
+  emitted by HomeWorks QSX processors.
+
+## [0.29.0] - 2026-06-09
+
+### Added
+
+- Support for Vierti Hybrid Keypad.
+
+### Changed
+
+- Device status 404 errors return `None` instead of raising.
+
+### Fixed
+
+- Warm-dim mode should be cleared correctly.
+
+## [0.28.0] - 2026-04-05
+
+### Added
+
+- Battery status for shades
+
+## [0.27.0] - 2026-03-01
+
+### Added
+
+- Support for Pico Paddle.
+
+## [0.26.0] - 2025-11-08
+
+### Added
+
+- Support for Caseta's Smart-Away feature.
+- Support for Triathlon Tilt-only Wood Blinds.
+
+## [0.25.0] - 2025-08-11
+
+### Added
+
+- `BUTTON_STATUS_MULTITAP` constant
+
+## [0.24.0] - 2025-03-09
+
+### Added
+
+- Optional callback for connection establishment.
+- Support for SerenaEssentialsRollerShade.
+
+## [0.23.0] - 2025-01-05
+
+### Added
+
+- Support for Lumaris RGB + Tunable White Tape Light.
+- Support for wood tilt blinds (Sivoia?).
+
+## [0.22.0] - 2024-10-04
+
+### Added
+
+- Support for Triathalon Essentials roller shades.
+
+## [0.21.1] - 2024-08-11
+
+### Fixed
+
+- Connecting to the bridge no longer does blocking file I/O in the async event loop.
+
+## [0.21.0] - 2024-07-04
+
+### Added
+
+- Support for PowPak0-10V dimmers.
+
+## [0.20.0] - 2024-02-22
+
+### Added
+
+- Support for over 99 areas.
+
+### Fixed
+
+- An error would occur if a button group contained no buttons.
+
+## [0.19.0] - 2024-01-27
+
+### Added
+
+- Support for Lumaris Tape Light and Ketra color.
+
+## [0.18.3] - 2023-10-07
+
+### Fixed
+
+- Reconnecting could sometimes fail.
+
+## [0.18.2] - 2023-09-03
+
+### Added
+
+- Support for Palladiom Wire-Free shades.
+
+### Fixed
+
+- Restored support for Wall Mounted Motion Sensor on RA3 23.4 firmware.
+
+## [0.18.1] - 2023-02-03
+
+### Fixed
+
+- Increased maximum message size for compatibility with 22.08.16f000 firmware.
+
+## [0.18.0] - 2022-01-17
+
+### Added
+
+- Support for Sunnata hybrid keypads.
+
+## [0.17.1] - 2022-10-23
+
+### Fixed
+
+- Now discovers the complete area list with working parent_area relationship.
+
+## [0.17.0] - 2022-10-18
+
+### Added
+
+- Support for RadioRA 2 PhantomKeypad.
+
+### Fixed
+
+- leap-scan now detects devices besides Caseta.
+
+## [0.16.0] - 2022-09-28
+
+### Changed
+
+- The `name` field on QSX and RadioRA 3 devices now more closely matches the format of the name field on Caseta devices.
+
+### Added
+
+- Devices now have an `area` field containing the area ID and a `device_name` field containing the name of the device without any prefixes or suffixes added by this library. These fields should be used instead of trying to parse the same values out of the `name` field.
+
+## [0.15.2] - 2022-09-19
+
+### Added
+
+- Support for new Claro and Diva devices on Caseta.
+
+## [0.15.1] - 2022-09-10
+
+### Changed
+
+- To match the previous behavior with Caseta, the `name` field on the button devices created for QSX and RadioRA 3 no longer contains the button name. The button name is still available in the `button_name` field.
+
+## [0.15.0] - 2022-09-10
+
+### Added
+
+- Support for HomeWorks QSX and RadioRA 3.
+- Support for RadioRA 2 InLineDimmer and InLineSwitch.
+
+## [0.14.0] - 2022-06-18
+
+### Added
+
+- Support for Serena tilt-only wood blinds.
+- New command line tools: lap-pair, leap-scan, leap.
+- Occupancy sensors are linked using `device['occupancy_sensors']` and `group['sensors']`.
+
+### Removed
+
+- get_lutron_cert.py. Use lap-pair instead. See README.md for details.
+
+### Fixed
+
+- `async_pair` works on Windows.
+
+## [0.13.1] - 2022-02-01
+
+### Fixed
+
+- No longer fails to initialize when no buttons are associated with the bridge.
+
+## [0.13.0] - 2021-12-05
+
+### Added
+
+- Support for remotes that have multiple button groups (eg Serena RF 4-group Remote).
+
+### Changed
+
+- The `buttongroup` member of of a device has been replaced with `button_groups`.
+
+## [0.12.1] - 2021-12-05
+
+### Fixed
+
+- No longer fails to initialize when a remote with multiple button groups (eg Serena RF 4-group Remote) is detected. Only the buttons in the first group are available until 0.13.0.
+
+## [0.12.0] - 2021-12-04
+
+### Added
+
+- Pico Remote button status and event handlers.
 
 ## [0.11.0] - 2021-06-01
 
@@ -179,7 +389,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Ability to interact with Caséta bridge using LIP over Telnet and LEAP over SSH.
 
-[unreleased]: https://github.com/gurumitts/pylutron-caseta/compare/v0.11.0...HEAD
+[unreleased]: https://github.com/gurumitts/pylutron-caseta/compare/v0.29.0...HEAD
+[0.29.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.28.0...v0.29.0
+[0.28.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.27.0...v0.28.0
+[0.27.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.26.0...v0.27.0
+[0.26.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.25.0...v0.26.0
+[0.25.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.24.0...v0.25.0
+[0.24.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.23.0...v0.24.0
+[0.23.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.22.0...v0.23.0
+[0.22.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.21.1...v0.22.0
+[0.21.1]: https://github.com/gurumitts/pylutron-caseta/compare/v0.21.0...v0.21.1
+[0.21.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.20.0...v0.21.0
+[0.20.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.19.0...v0.20.0
+[0.19.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.18.3...v0.19.0
+[0.18.3]: https://github.com/gurumitts/pylutron-caseta/compare/v0.18.2...v0.18.3
+[0.18.2]: https://github.com/gurumitts/pylutron-caseta/compare/v0.18.1...v0.18.2
+[0.18.1]: https://github.com/gurumitts/pylutron-caseta/compare/v0.18.0...v0.18.1
+[0.18.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.17.1...v0.18.0
+[0.17.1]: https://github.com/gurumitts/pylutron-caseta/compare/v0.17.0...v0.17.1
+[0.17.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.16.0...v0.17.0
+[0.16.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.15.2...v0.16.0
+[0.15.2]: https://github.com/gurumitts/pylutron-caseta/compare/v0.15.1...v0.15.2
+[0.15.1]: https://github.com/gurumitts/pylutron-caseta/compare/v0.15.0...v0.15.1
+[0.15.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.14.0...v0.15.0
+[0.14.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.13.1...v0.14.0
+[0.13.1]: https://github.com/gurumitts/pylutron-caseta/compare/v0.13.0...v0.13.1
+[0.13.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.12.1...v0.13.0
+[0.12.1]: https://github.com/gurumitts/pylutron-caseta/compare/v0.12.0...v0.12.1
+[0.12.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/gurumitts/pylutron-caseta/compare/v0.8.0...v0.9.0
